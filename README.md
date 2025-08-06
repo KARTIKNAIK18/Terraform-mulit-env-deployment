@@ -1,6 +1,3 @@
-
-
-
 <p align="center">
   <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" alt="Terraform Logo" width="80"/>
 </p>
@@ -170,8 +167,6 @@ resource "aws_cloudwatch_metric_alarm" "cpu_alarm" {
 
 <p align="center"> <img src="image.png" alt="Architecture Diagram" width="700"/> </p>
 
-> Replace `YOUR_DIAGRAM_URL_HERE` with the actual link to your diagram (e.g., hosted on GitHub, Imgur, or any CDN).
-
 ----------
 
 ## 📌 **Best Practices**
@@ -204,3 +199,4 @@ This project is licensed under the **MIT License**.
 Feel free to use, modify, and adapt it for your infrastructure needs.
 
 ----------
+
