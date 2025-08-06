@@ -1,12 +1,14 @@
+----------
 
+<p align="center"> <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" alt="Terraform Logo" width="80"/> </p>
 
-![](https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg) Terraform Multi-Environment AWS Infrastructure DeploymentMulti-Environment AWS Infrastructure Deployment
+#  **Terraform Multi-Environment AWS Infrastructure Deployment**
 
 A modular and reusable **Terraform project** for provisioning AWS infrastructure across multiple environments—such as `dev`, `staging`, and `prod`. This setup provisions **EC2**, **S3**, and **DynamoDB** resources using infrastructure-as-code (IaC) principles.
 
 ----------
 
-## 📁 Project Structure
+## 📁 **Project Structure**
 
 ```bash
 .
@@ -27,7 +29,7 @@ A modular and reusable **Terraform project** for provisioning AWS infrastructure
 
 ----------
 
-## 🚀 Features
+## 🚀 **Features**
 
 -   ✅ Modular and reusable infrastructure setup
 -   ✅ Multi-environment support (`dev`, `staging`, `prod`)
@@ -40,16 +42,16 @@ A modular and reusable **Terraform project** for provisioning AWS infrastructure
 
 ----------
 
-## 🧱 How It Works
+## 🧱 **How It Works**
 
--   **Module (`infra-eks-app`)**: Contains reusable logic for EC2, S3, and DynamoDB resources.
--   **`main.tf`**: Instantiates the module with environment-specific values.
--   **`variables.tf`**: Defines input variables for customization.
--   **`providers.tf`**: Configures AWS provider with region and credentials.
+-   **Module (`infra-eks-app`)**: Contains reusable logic for EC2, S3, and DynamoDB resources
+-   **`main.tf`**: Instantiates the module with environment-specific values
+-   **`variables.tf`**: Defines input variables for customization
+-   **`providers.tf`**: Configures AWS provider with region and credentials
 
 ----------
 
-## ⚙️ Usage
+## ⚙️ **Usage**
 
 1️⃣ **Initialize the project**
 
@@ -81,7 +83,7 @@ terraform destroy
 
 ----------
 
-## 📦 Module Usage Example
+## 📦 **Module Usage Example**
 
 ```hcl
 module "dev-infra" {
@@ -113,60 +115,62 @@ module "staging-infra" {
 
 ----------
 
-## ➕ Add Any AWS Service
+## ➕ **Add Any AWS Service**
 
-This project is designed to be **extensible**. You can easily add support for other AWS services by creating new `.tf` files inside the module folder. For example:
+This project is designed to be **extensible**. You can easily add support for other AWS services by creating new `.tf` files inside the module folder.
 
--   **Add RDS (Relational Database Service)**: Create `rds.tf` and define your DB instance:
-    
-    ```hcl
-    resource "aws_db_instance" "app_db" {
-      identifier         = "${var.env}-db"
-      engine             = "mysql"
-      instance_class     = "db.t3.micro"
-      allocated_storage  = 20
-      username           = "admin"
-      password           = var.db_password
-      skip_final_snapshot = true
-    }
-    
-    ```
-    
--   **Add CloudWatch Alarms**: Create `cloudwatch.tf` and define alarms for EC2 or other services.
-    
+### 🛠️ Example: Add RDS (Relational Database Service)
 
-Just update `variables.tf` to expose new inputs and modify `main.tf` to pass them in.
+Create `rds.tf` and define your DB instance:
+
+```hcl
+resource "aws_db_instance" "app_db" {
+  identifier          = "${var.env}-db"
+  engine              = "mysql"
+  instance_class      = "db.t3.micro"
+  allocated_storage   = 20
+  username            = "admin"
+  password            = var.db_password
+  skip_final_snapshot = true
+}
+
+```
+
+### 📊 Example: Add CloudWatch Alarms
+
+Create `cloudwatch.tf` and define alarms for EC2 or other services.
+
+> Just update `variables.tf` to expose new inputs and modify `main.tf` to pass them in.
 
 ----------
 
-## 📌 Best Practices
+## 📌 **Best Practices**
 
 -   🔒 **Never commit sensitive files**, such as:
     
     -   `teraa-key`
     -   `terraform.tfstate`
     -   `.terraform/`
--   ☁️ **Use remote backends** (e.g., S3 + DynamoDB) for secure state management.
+-   ☁️ **Use remote backends** (e.g., S3 + DynamoDB) for secure state management
     
--   🧪 **Test in `dev`** before promoting changes to `staging` or `prod`.
+-   🧪 **Test in `dev`** before promoting changes to `staging` or `prod`
     
--   📁 **Isolate environments** using workspaces or folder-based structures.
+-   📁 **Isolate environments** using workspaces or folder-based structures
     
 
 ----------
 
-## 🔐 Security Tips
+## 🔐 **Security Tips**
 
--   ❌ Never push private keys (`teraa-key`) to version control.
--   🔁 Rotate EC2 key-pairs periodically.
--   🔐 Use IAM roles with least privilege access.
-
-----------
-
-## 📄 License
-
-This project is licensed under the **MIT License**. Feel free to use, modify, and adapt it for your infrastructure needs.
+-   ❌ Never push private keys (`teraa-key`) to version control
+-   🔁 Rotate EC2 key-pairs periodically
+-   🔐 Use IAM roles with least privilege access
 
 ----------
 
-Want help adding RDS, Lambda, or CloudFront next? I can walk you through it step by step.
+## 📄 **License**
+
+This project is licensed under the **MIT License**.  
+Feel free to use, modify, and adapt it for your infrastructure needs.
+
+----------
