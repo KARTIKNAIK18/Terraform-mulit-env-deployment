@@ -1,13 +1,21 @@
-----------
 
-<p align="center"> <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" alt="Terraform Logo" width="80"/> </p>
 
-#  **Terraform Multi-Environment AWS Infrastructure Deployment**
 
-A modular and reusable **Terraform project** for provisioning AWS infrastructure across multiple environments—such as `dev`, `staging`, and `prod`. This setup provisions **EC2**, **S3**, and **DynamoDB** resources using infrastructure-as-code (IaC) principles.
+<p align="center">
+  <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" alt="Terraform Logo" width="80"/>
+</p>
 
-----------
+<h1 align="center"><strong>Terraform Multi-Environment AWS Infrastructure Deployment</strong></h1>
 
+<p align="center">
+  A modular, reusable, and scalable <strong>Terraform</strong> project for provisioning <strong>AWS infrastructure</strong> across multiple environments such as <code>dev</code>, <code>staging</code>, and <code>prod</code>.
+</p>
+
+<p align="center">
+  It provisions <strong>EC2</strong>, <strong>S3</strong>, and <strong>DynamoDB</strong> resources using Infrastructure as Code (IaC).
+</p>
+
+---
 ## 📁 **Project Structure**
 
 ```bash
@@ -98,7 +106,7 @@ module "dev-infra" {
 
 ```
 
-To support multiple environments, replicate this block with different values and use separate workspaces or folders:
+To support multiple environments, replicate this block with different values:
 
 ```hcl
 module "staging-infra" {
@@ -119,9 +127,7 @@ module "staging-infra" {
 
 This project is designed to be **extensible**. You can easily add support for other AWS services by creating new `.tf` files inside the module folder.
 
-### 🛠️ Example: Add RDS (Relational Database Service)
-
-Create `rds.tf` and define your DB instance:
+### 🛠️ Example: Add RDS
 
 ```hcl
 resource "aws_db_instance" "app_db" {
@@ -138,9 +144,33 @@ resource "aws_db_instance" "app_db" {
 
 ### 📊 Example: Add CloudWatch Alarms
 
-Create `cloudwatch.tf` and define alarms for EC2 or other services.
+```hcl
+resource "aws_cloudwatch_metric_alarm" "cpu_alarm" {
+  alarm_name          = "${var.env}-high-cpu"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "70"
+  alarm_description   = "Alarm when CPU exceeds 70%"
+  dimensions = {
+    InstanceId = aws_instance.my-ec2-instance.id
+  }
+}
 
-> Just update `variables.tf` to expose new inputs and modify `main.tf` to pass them in.
+```
+
+> Be sure to update `variables.tf` to expose any required input and pass them in `main.tf`.
+
+----------
+
+## 🧭 **Architecture Diagram**
+
+<p align="center"> <img src="image.png" alt="Architecture Diagram" width="700"/> </p>
+
+> Replace `YOUR_DIAGRAM_URL_HERE` with the actual link to your diagram (e.g., hosted on GitHub, Imgur, or any CDN).
 
 ----------
 
@@ -151,11 +181,11 @@ Create `cloudwatch.tf` and define alarms for EC2 or other services.
     -   `teraa-key`
     -   `terraform.tfstate`
     -   `.terraform/`
--   ☁️ **Use remote backends** (e.g., S3 + DynamoDB) for secure state management
+-   ☁️ Use **remote backends** (e.g., S3 + DynamoDB) for secure state management
     
--   🧪 **Test in `dev`** before promoting changes to `staging` or `prod`
+-   🧪 Test in `dev` before promoting changes to `staging` or `prod`
     
--   📁 **Isolate environments** using workspaces or folder-based structures
+-   📁 Isolate environments using workspaces or folder-based structures
     
 
 ----------
