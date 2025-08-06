@@ -1,7 +1,6 @@
 
 
-```markdown
-# ![](https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg) Terraform Multi-Environment AWS Infrastructure Deployment
+![](https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg) Terraform Multi-Environment AWS Infrastructure Deployment
 
 A modular and reusable **Terraform project** for provisioning AWS infrastructure across multiple environments (e.g., `dev`, `staging`, `prod`). This setup includes resources like **EC2**, **S3**, and **DynamoDB**, following infrastructure-as-code (IaC) principles.
 
